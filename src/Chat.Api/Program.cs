@@ -1,4 +1,7 @@
 
+using Microsoft.Extensions.AI;
+using OllamaSharp;
+
 namespace Chat.Api
 {
     public class Program
@@ -14,6 +17,9 @@ namespace Chat.Api
             builder.Services.AddSwaggerGen();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
+
+            builder.Services.AddChatClient(static _ => 
+                new OllamaApiClient("http://localhost:11434", "qwen3.5:4b"));
 
             var app = builder.Build();
 
